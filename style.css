@@ -1,0 +1,57 @@
+/* Основные стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Карточки товаров */
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: contain;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Логотипы производителей */
+.manufacturer-logo {
+    height: 20px;
+    width: auto;
+}
+
+/* Карусель на странице товара */
+.carousel-item img {
+    max-height: 400px;
+    object-fit: contain;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Хлебные крошки */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .product-card {
+        margin-bottom: 20px;
+    }
+    
+    .product-card img {
+        height: 150px;
+    }
+}
