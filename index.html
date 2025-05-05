@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroShop - Каталог товаров</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ElectroShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакты</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-light me-2">
+                        <i class="fas fa-shopping-cart"></i> Корзина
+                    </a>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-user"></i> Войти
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Фильтры -->
+            <div class="col-md-3">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Фильтры</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Категории</h6>
+                        <div class="list-group" id="category-filters">
+                            <!-- Категории будут загружены через JS -->
+                        </div>
+
+                        <h6 class="mt-3">Производители</h6>
+                        <div class="list-group" id="manufacturer-filters">
+                            <!-- Производители будут загружены через JS -->
+                        </div>
+
+                        <h6 class="mt-3">Цена</h6>
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" class="form-control" id="min-price" placeholder="От">
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" id="max-price" placeholder="До">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-100 mt-3" id="apply-filters">
+                            Применить фильтры
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Список товаров -->
+            <div class="col-md-9">
+                <div class="row mb-3">
+                    <div class="col">
+                        <h2>Каталог товаров</h2>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select" id="sort-by">
+                            <option value="price_asc">По возрастанию цены</option>
+                            <option value="price_desc">По убыванию цены</option>
+                            <option value="rating_desc">По рейтингу</option>
+                            <option value="newest">Сначала новые</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row" id="products-container">
+                    <!-- Товары будут загружены через JS -->
+                </div>
+
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center" id="pagination">
+                        <!-- Пагинация будет загружена через JS -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>ElectroShop</h5>
+                    <p>Лучший интернет-магазин электроники и компьютерных комплектующих.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Контакты</h5>
+                    <p>Email: info@electroshop.com<br>Телефон: +7 (123) 456-7890</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Мы в соцсетях</h5>
+                    <a href="#" class="text-white me-2"><i class="fab fa-vk fa-2x"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-telegram fa-2x"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-youtube fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        console.log("jQuery работает!");
+        $.get("/api/get_products.php", function(data) {
+            console.log("Данные получены:", data);
+            $("#products-container").html("Товары загружены!");
+        });
+    });
+    </script>
+</body>
+</html>
